@@ -1,8 +1,6 @@
-import { env } from "@/common/utils/envConfig";
 import { app, logger } from "@/server";
 
 const server = app.listen(8080, () => {
-  const { NODE_ENV, HOST, PORT } = env;
   logger.info(`Server development running on port http://localhost:8080`);
 });
 
@@ -12,7 +10,7 @@ const onCloseSignal = () => {
     logger.info("server closed");
     process.exit();
   });
-  setTimeout(() => process.exit(1), 10000).unref(); // Force shutdown after 10s
+  setTimeout(() => process.exit(1), 10000).unref();
 };
 
 process.on("SIGINT", onCloseSignal);
